@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      DAM-U2-PRAC04-Pacheco
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="myForm" (ngSubmit)="sendData()">
+    <!--se le asigna al formGroupName el nombre del formgroup (contenedor de los controles: tics, meca y otro )-->
+    <ion-list formGroupName="interests">
+
+      <ion-item>
+        <ion-label>TICS</ion-label>
+        <!--Cada interes tiene su control-->
+        <ion-checkbox formControlName="tics"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Mecánica</ion-label>
+        <ion-checkbox formControlName="meca"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Otros</ion-label>
+        <ion-checkbox formControlName="otro"></ion-checkbox>
+      </ion-item>
+
+    </ion-list>
+    <!--Texto para mostrar errores. ngIf comprueba la variable !myForm(formgrooup principal).controls.interests(formgroup anidado).valid-->
+        <p *ngIf="!myForm.controls.interests.valid" color="danger" padding-left>Selecciona al menos un interés</p>    
+
+    <ion-fab bottom right>
+      <button ion-fab type="submit" [disabled]="!myForm.valid">
+          <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+  </form>
+
+</ion-content>
